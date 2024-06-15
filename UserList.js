@@ -2,22 +2,19 @@ export class UserList {
     constructor() {
         this.fetchedData ={}
         this.fetchData()
+        this.initializeList()
     }
     async fetchData() {
-        await Promise.all([
-            fetch(
-                "https://jsonplaceholder.typicode.com/users",
-            ),
-        ])
-            .then((responsesArray) =>
-                Promise.all(responsesArray.map((res) => res.json())),
-            )
+        fetch('https://jsonplaceholder.typicode.com/users')
+            .then(response => response.json())
+            .then(data => console.log(data))
             .then((data) => (this.fetchedData = data))
-            .then((data) => console.log(data))
-            .then((this.initializeList()))
     }
-    initializeList(){
+    async initializeList(){
+        console.log("initialising")
         const listContainer = document.querySelector('#app')
+        console.log(listContainer)
+        console.log(this.fetchedData.length)
         for(let i = 0; i < this.fetchedData.length; i ++){
             const userContainer = document.createElement("div");
             console.log("creating list")
