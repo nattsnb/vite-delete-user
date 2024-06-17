@@ -1,17 +1,34 @@
 export class UserList {
     constructor() {
         this.fetchedData ={}
+        this.startButton = null
         this.fetchData()
-        this.initializeList()
+        this.wait()
+        this.initializeStartButton()
     }
     async fetchData() {
-        fetch('https://jsonplaceholder.typicode.com/users')
+        const response = await fetch('https://jsonplaceholder.typicode.com/users')
             .then(response => response.json())
             .then(data => console.log(data))
             .then((data) => (this.fetchedData = data))
     }
-    async initializeList(){
-        console.log("initialising")
+    initializeStartButton() {
+        const startButton = document.createElement("button");
+        startButton.innerHTML = "INITIALIZE LIST"
+        startButton.setAttribute("id","start-button");
+        this.startButton = startButton
+        const listContainer = document.querySelector('#app')
+        listContainer.append(startButton)
+        this.initializeEventListener()
+    }
+
+    initializeEventListener = () => {
+        this.startButton.addEventListener('click', this.initializeList());
+        console.log("click event initialized")
+    };
+
+    initializeList(){
+        console.log("initialising list")
         const listContainer = document.querySelector('#app')
         console.log(listContainer)
         console.log(this.fetchedData.length)
@@ -22,6 +39,8 @@ export class UserList {
             userContainer.classList.add('userContainer');
             userContainer.innerHTML = "USERNAME"
         }
+    }
+    wait () {
 
     }
 }
