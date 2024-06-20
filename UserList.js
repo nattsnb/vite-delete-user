@@ -20,11 +20,11 @@ export class UserList {
     }
 
     initializeEventListener = () => {
-        this.startButton.addEventListener('click', this.initializeList());
+        this.startButton.addEventListener('click', this.initializeList);
         console.log("click event initialized")
     };
-
-    initializeList() {
+    
+    initializeList=()=> {
         console.log("initialising list")
         const listContainer = document.querySelector('#app')
         console.log(listContainer)
