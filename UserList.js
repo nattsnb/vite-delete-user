@@ -1,3 +1,5 @@
+import {DeleteButton} from "./DeleteButton.js";
+
 export class UserList {
     constructor() {
         this.fetchedData ={}
@@ -34,8 +36,13 @@ export class UserList {
             const userContainer = document.createElement("div");
             console.log("creating list")
             listContainer.append(userContainer);
-            userContainer.classList.add('userContainer');
+            userContainer.classList.add('user-container');
             userContainer.innerHTML = this.fetchedData[i].name
+            const deleteButton = new DeleteButton(i, userContainer)
         }
     }
+
+
+
+
 }
