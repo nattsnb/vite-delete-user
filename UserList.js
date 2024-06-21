@@ -8,6 +8,7 @@ export class UserList {
     async fetchData() {
         const response = await fetch('https://jsonplaceholder.typicode.com/users')
         this.fetchedData = await response.json();
+        console.log(this.fetchedData)
     }
     initializeStartButton() {
         const startButton = document.createElement("button");
@@ -23,7 +24,7 @@ export class UserList {
         this.startButton.addEventListener('click', this.initializeList);
         console.log("click event initialized")
     };
-    
+
     initializeList=()=> {
         console.log("initialising list")
         const listContainer = document.querySelector('#app')
@@ -34,7 +35,7 @@ export class UserList {
             console.log("creating list")
             listContainer.append(userContainer);
             userContainer.classList.add('userContainer');
-            userContainer.innerHTML = "USERNAME"
+            userContainer.innerHTML = this.fetchedData[i].name
         }
     }
 }
