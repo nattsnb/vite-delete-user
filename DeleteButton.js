@@ -10,10 +10,10 @@ export class DeleteButton {
         deleteButton.addEventListener("click", this.deleteUser)
     }
 
-    async deleteUser () {
-        const deleteUser = await fetch(this.url + '/' + this.iD, {
+    deleteUser = () => {
+        const deleteUser =  fetch(this.url + '/' + this.iD, {
             method: 'DELETE',
         })
-        console.log(`user deleted ${this.iD}`)
+        console.log(`${this.iD} user deleted`)
     }
 }
