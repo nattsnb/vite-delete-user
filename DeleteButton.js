@@ -1,19 +1,21 @@
 export class DeleteButton {
-    constructor(iD, userContainer) {
+    constructor(id, userContainer) {
         this.url = 'https://jsonplaceholder.typicode.com/users'
-        this.iD = iD + 1;
-        console.log(this.iD)
+        this.id = id + 1;
+        this.createButton(userContainer)
+    }
+
+    async deleteUser() {
+        const deleteUser =  await fetch(`${this.url}/${this.id}`, {
+            method: 'DELETE',
+        })
+    }
+
+    createButton = (userContainer) => {
         const deleteButton = document.createElement("button");
         deleteButton.classList.add('delete-button');
         deleteButton.innerHTML = "DELETE"
         userContainer.append(deleteButton);
         deleteButton.addEventListener("click", this.deleteUser)
-    }
-
-    deleteUser = () => {
-        const deleteUser =  fetch(this.url + '/' + this.iD, {
-            method: 'DELETE',
-        })
-        console.log(`${this.iD} user deleted`)
     }
 }
