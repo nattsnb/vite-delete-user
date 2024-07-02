@@ -1,5 +1,4 @@
 import "./style.css";
-import {UserList} from "./UserList.js";
+import { UserList } from "./UserList.js";
 
-
-const userList = new UserList()
+const userList = new UserList();
