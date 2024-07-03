@@ -2,14 +2,14 @@ import { DeleteButton } from "./DeleteButton.js";
 
 export class UserList {
   constructor() {
-    this.fetchedData = {};
+    this.users = {};
     this.startButton = null;
     this.fetchData();
     this.initializeStartButton();
   }
   async fetchData() {
     const response = await fetch("https://jsonplaceholder.typicode.com/users");
-    this.fetchedData = await response.json();
+    this.users = await response.json();
   }
   initializeStartButton() {
     const startButton = document.createElement("button");
@@ -27,15 +27,12 @@ export class UserList {
 
   initializeList = () => {
     const listContainer = document.querySelector("#app");
-    for (let i = 0; i < this.fetchedData.length; i++) {
+    for (let i = 0; i < this.users.length; i++) {
       const userContainer = document.createElement("div");
       listContainer.append(userContainer);
       userContainer.classList.add("user-container");
-      userContainer.innerHTML = this.fetchedData[i].name;
-      const deleteButton = new DeleteButton(
-        this.fetchedData[i].id,
-        userContainer,
-      );
+      userContainer.innerHTML = this.users[i].name;
+      new DeleteButton(this.users[i].id, userContainer);
     }
   };
 }
