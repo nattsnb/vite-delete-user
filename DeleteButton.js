@@ -10,7 +10,7 @@ export class DeleteButton {
     const deleteUserResponse = await fetch(`${this.url}/${this.userId}`, {
       method: "DELETE",
     });
-    if (this.userContainer && deleteUserResponse) {
+    if (this.userContainer && deleteUserResponse.ok) {
       this.userContainer.remove();
     }
   };
